@@ -14,6 +14,7 @@ dbutils.fs.mounts()
 
 # COMMAND ----------
 
+dbutils.fs.unmount('/mnt/mountAdlsGen2_Container_LearnTogether')
 dbutils.fs.unmount('/mnt/mountPoint')
 
 # COMMAND ----------
@@ -33,7 +34,7 @@ dbutils.fs.mount(
 
 # COMMAND ----------
 
-dbutils.fs.ls('mnt/mountAdlsGen2_Container_LearnTogether')
+dbutils.fs.ls('mnt/mountPoint')
 
 # COMMAND ----------
 
@@ -42,7 +43,7 @@ dbutils.fs.ls('mnt/mountAdlsGen2_Container_LearnTogether')
 
 # COMMAND ----------
 
-dataFrame = spark.read.format('csv').options(header=True, inferSchema=True).load('dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/Dir1/circuits.csv')
+dataFrame = spark.read.format('csv').options(header=True, inferSchema=True).load('dbfs:/mnt/mountPoint/Dir1/circuits.csv')
 dataFrame.printSchema()
 dataFrame.show(10)
 dataFrame.display()
@@ -54,7 +55,7 @@ dataFrame.display()
 
 # COMMAND ----------
 
-dataFrame.write.format('csv').save('/mnt/mountAdlsGen2_Container_LearnTogether/output/circuits')
+dataFrame.write.format('csv').save('/mnt/mountPoint/output/circuits')
 
 # COMMAND ----------
 
@@ -64,18 +65,18 @@ dataFrame.write.format('csv').save('/mnt/mountAdlsGen2_Container_LearnTogether/o
 # COMMAND ----------
 
 # To remove any directory
-# dbutils.fs.rm('dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/test/')
-dbutils.fs.rm('dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/test/',recurse=True)
+# dbutils.fs.rm('dbfs:/mnt/mountPoint/test/')
+dbutils.fs.rm('dbfs:/mnt/mountPoint/test/',recurse=True)
 
 # COMMAND ----------
 
 # To copy file
-dbutils.fs.cp('dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/input/circuits.csv','dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/output/')
+dbutils.fs.cp('dbfs:/mnt/mountPoint/input/circuits.csv','dbfs:/mnt/mountPoint/output/')
 
 # COMMAND ----------
 
 # To Move files
-dbutils.fs.mv('dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/input/circuits.csv','dbfs:/mnt/mountAdlsGen2_Container_LearnTogether/output/')
+dbutils.fs.mv('dbfs:/mnt/mountPoint/input/circuits.csv','dbfs:/mnt/mountPoint/output/')
 
 # COMMAND ----------
 
